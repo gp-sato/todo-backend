@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             TruncateAllTablesSeeder::class,
             UserSeeder::class,
+            TaskSeeder::class,
         ]);
     }
 }
