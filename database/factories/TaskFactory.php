@@ -22,6 +22,7 @@ class TaskFactory extends Factory
         return [
             'title' => $this->faker->sentence,
             'is_completed' => $this->faker->boolean,
+            'due_date' => $this->faker->dateTimeBetween('-3 days', '+1 week'),
         ];
     }
 }
