@@ -42,12 +42,19 @@ class TaskController extends Controller
         Gate::authorize('update', $task);  // ポリシーでユーザー確認
 
         $validated = $request->validate([
-            'is_completed' => 'required|boolean',
+            'title' => 'sometimes|required|string|max:255',
+            'is_completed' => 'sometimes|boolean',
+            'due_date' => 'sometimes|nullable|date',
         ]);
 
-        $task->update([
-            'is_completed' => $validated['is_completed'],
-        ]);
+        // 空文字対策
+        if (array_key_exists('due_date', $validated) && $validated['due_date'] === '') {
+            $validated['due_date'] = null;
+        }
+
+        // 一括で更新
+        $task->fill($validated);
+        $task->save();
 
         return response()->json($task);
     }
