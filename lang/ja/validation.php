@@ -153,4 +153,13 @@ return [
     'uppercase'              => ':Attributeは、大文字で入力してください。',
     'url'                    => ':Attributeは、有効なURL形式で指定してください。',
     'uuid'                   => ':Attributeは、有効なUUIDである必要があります。',
+
+    'attributes' => [
+        'name' => '名前',
+        'email' => 'メールアドレス',
+        'password' => 'パスワード',
+        'title' => 'タスク名',
+        'is_completed' => '完了状態',
+        'due_date' => '期限日',
+    ],
 ];
