@@ -25,10 +25,14 @@ class TaskController extends Controller
 
         $validated = $request->validate([
             'title' => 'required|string|max:255',
+            'due_date' => 'nullable|date|after_or_equal:now',
+        ], [
+            'due_date.after_or_equal' => '期限は現在以降の日付を指定してください。',
         ]);
 
         $task = $request->user()->tasks()->create([
             'title' => $validated['title'],
+            'due_date' => $validated['due_date'],
         ]);
 
         return response()->json($task, 201);
